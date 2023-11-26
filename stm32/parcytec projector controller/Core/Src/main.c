@@ -1,5 +1,7 @@
 #include "main.h"
 
+int period_value=72000/100;
+
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
@@ -20,8 +22,63 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
 
+	/////////////////declare variables///////////////////
+	
+	int delay_value=1000/10;   // 1000/freq of pwm for led  PC13
+	
+///////////////configuration of TIM1/////////////////
+	
+	int compare_value1=period_value*0.33; // defining the duty cycle of pwm //
+	int compare_value2=period_value*0.33; // defining the duty cycle of pwm //
+	int compare_value3=period_value*0.3; // defining the duty cycle of pwm //
+	int compare_value4=period_value*0.3; // defining the duty cycle of pwm //
+	int compare_value5=period_value*0.33; // defining the duty cycle of pwm //
+	int compare_value6=period_value*0.33; // defining the duty cycle of pwm //
+	int compare_value7=period_value*0.3; // defining the duty cycle of pwm //
+	int compare_value8=period_value*0.3; // defining the duty cycle of pwm //
+	int compare_value9=period_value*0.33; // defining the duty cycle of pwm //
+	int compare_value10=period_value*0.33; // defining the duty cycle of pwm //
+	int compare_value11=period_value*0.3; // defining the duty cycle of pwm //
+	int compare_value12=period_value*0.3; // defining the duty cycle of pwm //
+	
+	// setting the values //
+	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,compare_value1); 
+	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,compare_value2);
+	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,compare_value3); 
+	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_4,compare_value4); 
+	__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1,compare_value5); 
+	__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_2,compare_value6);
+	__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_3,compare_value7); 
+	__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_4,compare_value8); 
+	__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_1,compare_value9); 
+	__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_2,compare_value10);
+	__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_3,compare_value11); 
+	__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_4,compare_value12); 
+	
+	//starting timers//
+	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1); 
+	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2); 
+	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3); 
+	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_4); 
+	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1); 
+	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2); 
+	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3); 
+	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4); 
+	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_1); 
+	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_2); 
+	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_3); 
+	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_4); 
+
+
   while (1)
   {
+		HAL_GPIO_WritePin(led_GPIO_Port,led_Pin,1);
+		HAL_Delay(50);
+		HAL_GPIO_WritePin(led_GPIO_Port,led_Pin,0);
+		HAL_Delay(50);
+		
+		
+		
 
   }
 
@@ -36,10 +93,13 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -49,16 +109,17 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
 }
+
 
 
 static void MX_TIM2_Init(void)
