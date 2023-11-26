@@ -1,0 +1,23 @@
+--cpu Cortex-M3
+"parcytec projector controller\startup_stm32f103xb.o"
+"parcytec projector controller\main.o"
+"parcytec projector controller\stm32f1xx_it.o"
+"parcytec projector controller\stm32f1xx_hal_msp.o"
+"parcytec projector controller\stm32f1xx_hal_gpio_ex.o"
+"parcytec projector controller\stm32f1xx_hal_tim.o"
+"parcytec projector controller\stm32f1xx_hal_tim_ex.o"
+"parcytec projector controller\stm32f1xx_hal.o"
+"parcytec projector controller\stm32f1xx_hal_rcc.o"
+"parcytec projector controller\stm32f1xx_hal_rcc_ex.o"
+"parcytec projector controller\stm32f1xx_hal_gpio.o"
+"parcytec projector controller\stm32f1xx_hal_dma.o"
+"parcytec projector controller\stm32f1xx_hal_cortex.o"
+"parcytec projector controller\stm32f1xx_hal_pwr.o"
+"parcytec projector controller\stm32f1xx_hal_flash.o"
+"parcytec projector controller\stm32f1xx_hal_flash_ex.o"
+"parcytec projector controller\stm32f1xx_hal_exti.o"
+"parcytec projector controller\system_stm32f1xx.o"
+--strict --scatter "parcytec projector controller\parcytec projector controller.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "parcytec projector controller.map" -o "parcytec projector controller\parcytec projector controller.axf"
