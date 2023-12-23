@@ -1,0 +1,13 @@
+Added Component: Designator=C?(Cap_Al_11.2MM)
+Add component (AddParameter): Name = "Adding Date"; Value = "1387/12/20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Designer"; Value = "Saeid Jorablo"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Organazation"; Value = "ControTec"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1uF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "16V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=24V Pin=U1-1
+Added Net: Name=24V
+Added Pin To Net: NetName=NetU1_3 Pin=U1-3
+Added Pin To Net: NetName=NetU1_3 Pin=U1-5
+Added Pin To Net: NetName=NetU1_3 Pin=U1-6
+Added Net: Name=NetU1_3
+Added Member To Class: ClassName=Sheet1 Member=Component C? 1uF
