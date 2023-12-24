@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=TIM2_CH1 Pin=U2-A0
+Removed Pin From Net: NetName=TIM2_CH2 Pin=U2-A1
+Removed Pin From Net: NetName=TIM2_CH3 Pin=U2-A2
+Removed Pin From Net: NetName=TIM2_CH4 Pin=U2-A3
+Removed Pin From Net: NetName=TIM3_CH1 Pin=U2-A6
+Removed Pin From Net: NetName=TIM3_CH2 Pin=U2-A7
+Removed Pin From Net: NetName=TIM3_CH3 Pin=U2-B0
+Removed Pin From Net: NetName=TIM3_CH4 Pin=U2-B1
+Removed Pin From Net: NetName=TIM4_CH1 Pin=U2-B6
+Removed Pin From Net: NetName=TIM4_CH2 Pin=U2-B7
+Removed Pin From Net: NetName=TIM4_CH3 Pin=U2-B8
+Removed Pin From Net: NetName=TIM4_CH4 Pin=U2-B9
+Removed Member From Class: ClassName=Sheet1 Member=U2

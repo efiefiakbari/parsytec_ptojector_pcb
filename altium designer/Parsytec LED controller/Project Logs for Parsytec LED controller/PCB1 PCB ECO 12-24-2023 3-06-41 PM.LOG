@@ -1,0 +1,102 @@
+Added Component: Designator=D2(LL4148)
+Added Component: Designator=D3(LL4148)
+Added Component: Designator=D4(LL4148)
+Added Component: Designator=D5(LL4148)
+Added Component: Designator=D6(LL4148)
+Added Component: Designator=D7(LL4148)
+Added Component: Designator=D8(LL4148)
+Added Component: Designator=D9(LL4148)
+Added Component: Designator=D10(LL4148)
+Added Component: Designator=D11(LL4148)
+Added Component: Designator=D12(LL4148)
+Added Component: Designator=D13(LL4148)
+Added Component: Designator=H1(1X09)
+Added Component: Designator=H2(1X09)
+Added Pin To Net: NetName=24V Pin=H1-1
+Added Pin To Net: NetName=GND Pin=H1-2
+Added Pin To Net: NetName=TIM2_CH1_D Pin=D2-2
+Added Pin To Net: NetName=TIM2_CH1_D Pin=H1-3
+Added Net: Name=TIM2_CH1_D
+Added Pin To Net: NetName=TIM2_CH1 Pin=D2-1
+Added Pin To Net: NetName=TIM2_CH1 Pin=U?-A0
+Added Net: Name=TIM2_CH1
+Added Pin To Net: NetName=TIM2_CH2_D Pin=D3-2
+Added Pin To Net: NetName=TIM2_CH2_D Pin=H1-4
+Added Net: Name=TIM2_CH2_D
+Added Pin To Net: NetName=TIM2_CH2 Pin=D3-1
+Added Pin To Net: NetName=TIM2_CH2 Pin=U?-A1
+Added Net: Name=TIM2_CH2
+Added Pin To Net: NetName=TIM2_CH3_D Pin=D4-2
+Added Pin To Net: NetName=TIM2_CH3_D Pin=H1-5
+Added Net: Name=TIM2_CH3_D
+Added Pin To Net: NetName=TIM2_CH3 Pin=D4-1
+Added Pin To Net: NetName=TIM2_CH3 Pin=U?-A2
+Added Net: Name=TIM2_CH3
+Added Pin To Net: NetName=TIM2_CH4_D Pin=D5-2
+Added Pin To Net: NetName=TIM2_CH4_D Pin=H1-6
+Added Net: Name=TIM2_CH4_D
+Added Pin To Net: NetName=TIM2_CH4 Pin=D5-1
+Added Pin To Net: NetName=TIM2_CH4 Pin=U?-A3
+Added Net: Name=TIM2_CH4
+Added Pin To Net: NetName=TIM3_CH1_D Pin=D6-2
+Added Pin To Net: NetName=TIM3_CH1_D Pin=H1-7
+Added Net: Name=TIM3_CH1_D
+Added Pin To Net: NetName=TIM3_CH1 Pin=D6-1
+Added Pin To Net: NetName=TIM3_CH1 Pin=U?-A6
+Added Net: Name=TIM3_CH1
+Added Pin To Net: NetName=TIM3_CH2_D Pin=D7-2
+Added Pin To Net: NetName=TIM3_CH2_D Pin=H1-8
+Added Net: Name=TIM3_CH2_D
+Added Pin To Net: NetName=TIM3_CH2 Pin=D7-1
+Added Pin To Net: NetName=TIM3_CH2 Pin=U?-A7
+Added Net: Name=TIM3_CH2
+Added Pin To Net: NetName=TIM3_CH3_D Pin=D8-2
+Added Pin To Net: NetName=TIM3_CH3_D Pin=H1-9
+Added Net: Name=TIM3_CH3_D
+Added Pin To Net: NetName=TIM3_CH3 Pin=D8-1
+Added Pin To Net: NetName=TIM3_CH3 Pin=U?-B0
+Added Net: Name=TIM3_CH3
+Added Pin To Net: NetName=TIM3_CH4_D Pin=D9-2
+Added Pin To Net: NetName=TIM3_CH4_D Pin=H2-1
+Added Net: Name=TIM3_CH4_D
+Added Pin To Net: NetName=TIM3_CH4 Pin=D9-1
+Added Pin To Net: NetName=TIM3_CH4 Pin=U?-B1
+Added Net: Name=TIM3_CH4
+Added Pin To Net: NetName=TIM4_CH1_D Pin=D10-2
+Added Pin To Net: NetName=TIM4_CH1_D Pin=H2-2
+Added Net: Name=TIM4_CH1_D
+Added Pin To Net: NetName=TIM4_CH1 Pin=D10-1
+Added Pin To Net: NetName=TIM4_CH1 Pin=U?-B6
+Added Net: Name=TIM4_CH1
+Added Pin To Net: NetName=TIM4_CH2_D Pin=D11-2
+Added Pin To Net: NetName=TIM4_CH2_D Pin=H2-3
+Added Net: Name=TIM4_CH2_D
+Added Pin To Net: NetName=TIM4_CH2 Pin=D11-1
+Added Pin To Net: NetName=TIM4_CH2 Pin=U?-B7
+Added Net: Name=TIM4_CH2
+Added Pin To Net: NetName=TIM4_CH3_D Pin=D12-2
+Added Pin To Net: NetName=TIM4_CH3_D Pin=H2-4
+Added Net: Name=TIM4_CH3_D
+Added Pin To Net: NetName=TIM4_CH3 Pin=D12-1
+Added Pin To Net: NetName=TIM4_CH3 Pin=U?-B8
+Added Net: Name=TIM4_CH3
+Added Pin To Net: NetName=TIM4_CH4_D Pin=D13-2
+Added Pin To Net: NetName=TIM4_CH4_D Pin=H2-5
+Added Net: Name=TIM4_CH4_D
+Added Pin To Net: NetName=TIM4_CH4 Pin=D13-1
+Added Pin To Net: NetName=TIM4_CH4 Pin=U?-B9
+Added Net: Name=TIM4_CH4
+Added Member To Class: ClassName=Sheet1 Member=Component D2 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D3 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D4 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D5 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D6 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D7 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D8 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D9 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D10 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D11 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D12 D?
+Added Member To Class: ClassName=Sheet1 Member=Component D13 D?
+Added Member To Class: ClassName=Sheet1 Member=Component H1 Header 9
+Added Member To Class: ClassName=Sheet1 Member=Component H2 Header 9

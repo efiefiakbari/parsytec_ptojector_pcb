@@ -1,0 +1,741 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD23\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12/24/2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">3:23:51 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc" class="file"><acronym title="C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc">C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">131</td></tr>
+</table>
+</td>
+</table><a name="IDRVX03SBNRMEOJJS5LEQ1FXBITH441PAXTKNL5UPOOVSY4N4YOMBE"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJ240VSII3Z1PBGHVHWUQ5ZDCCMRAGGUCSKHYIVE10423C1DSHLQC">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDD5ZTUIK2KIMHLPOONZ1V40TMMPZGLTGUDKP3ESP22KF31ABYKGPP">Clearance Constraint (Gap=0.127mm) (IsStitchingVia and InNet('No Net')),((IsVia and (Not IsStitchingVia)) Or IsPad)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDI5VROBWBGDPWJERJUXKIGK1NVJC1N3TQW4S1FANSRW1XZWVYBLLE">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDH5HDYIWAGCMPINS1QAOS1VCYKLVY20XBHLGKYCHCVWPDGXDXK0EM">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">33</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWHW0YZVMFCYZI2WCJURJBARA0IPALXJ31PIEZLM2IWHBDS5A4O3C">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDL2NH5NMWDDTQLGBV1NEQQMMD4IZMF2KBODHTGDCXLOKDPARMAZQM">Width Constraint (Min=0.3mm) (Max=1.2mm) (Preferred=0.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPUKLJK20STRGEZNP3BJO1DPUJNXGH1VEVBYMDUMUJ2IUIP3EHFHG">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZEX4K3JEIFAEHCILKXBT12LGJKUTEKXPPNGZWDMIK44IPQEC24GI">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDT2HAKDRBZ5PFPHF3QYWZ1OYENHQK55V0WF1JDJD52GN4ZSDSCABB">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDK2N0JVHJ2PTBCLAFXGK1IDXGTDF1YD3CZJFYTHC4T5HDN5QMVOLH">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDO5DXKWXVZXTSBHL0GWH0WXLDWB2XSP21Z0JYHSBQWVZOM5OEEAHO">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">94</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDE3QDNTWWCKCYIQVYQ4JTOHFW2LBHMNNU4ENJICLVTQVXFKENGJYD">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5KGJPPYKPHVRFG5LYAWOOE51BNPWEPBWVAR2EVCDN5TODZUTH4QH">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTSHEEI1XZGXNKN3HG50PWVTCOHBVKDDH31SCVFEPVR2035XZKLQO">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">131</td>
+</tr>
+</table><br><a name="IDH5HDYIWAGCMPINS1QAOS1VCYKLVY20XBHLGKYCHCVWPDGXDXK0EM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=164.748mil|Location2.X=498.055mil|Location1.Y=283.945mil|Location2.Y=855.11mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=164.748mil|Location2.X=498.055mil|Location1.Y=283.945mil|Location2.Y=855.11mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C2-2(7.286mm,8.814mm) on Top Layer And Pad C1-2(11.049mm,18.618mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=371.945mil|Location2.X=595.465mil|Location1.Y=573.535mil|Location2.Y=855.11mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=371.945mil|Location2.X=595.465mil|Location1.Y=573.535mil|Location2.Y=855.11mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C1-2(11.049mm,18.618mm) on Top Layer And Pad C3-2(14.498mm,15.519mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=546.126mil|Location2.X=3791mil|Location1.Y=362mil|Location2.Y=648.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=546.126mil|Location2.X=3791mil|Location1.Y=362mil|Location2.Y=648.465mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C3-2(14.498mm,15.519mm) on Top Layer And Pad H1-2(95.174mm,10.058mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1362.378mil|Location2.X=4338.449mil|Location1.Y=802.378mil|Location2.Y=2362.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1362.378mil|Location2.X=4338.449mil|Location1.Y=802.378mil|Location2.Y=2362.661mil|Absolute=True">Un-Routed Net Constraint: Net TIM4_CH1 Between Pad U2-B6(35.306mm,21.082mm) on Multi-Layer And Pad D10-1(109.22mm,59.31mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3687mil|Location2.X=4338.449mil|Location1.Y=1434mil|Location2.Y=2492.583mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3687mil|Location2.X=4338.449mil|Location1.Y=1434mil|Location2.Y=2492.583mil|Absolute=True">Un-Routed Net Constraint: Net TIM4_CH1_D Between Pad H2-2(94.767mm,37.287mm) on Multi-Layer And Pad D10-2(109.22mm,62.61mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=335mil|Location2.X=783mil|Location1.Y=692.055mil|Location2.Y=1490mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=335mil|Location2.X=783mil|Location1.Y=692.055mil|Location2.Y=1490mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Track (11.049mm,18.618mm)(11.049mm,20.118mm) on Top Layer And Pad D1-1(17.348mm,35.306mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1362.378mil|Location2.X=3759.449mil|Location1.Y=702.378mil|Location2.Y=2559.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1362.378mil|Location2.X=3759.449mil|Location1.Y=702.378mil|Location2.Y=2559.661mil|Absolute=True">Un-Routed Net Constraint: Net TIM4_CH2 Between Pad U2-B7(35.306mm,18.542mm) on Multi-Layer And Pad D11-1(94.513mm,64.314mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3682.551mil|Location2.X=3775mil|Location1.Y=1534mil|Location2.Y=2689.583mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3682.551mil|Location2.X=3775mil|Location1.Y=1534mil|Location2.Y=2689.583mil|Absolute=True">Un-Routed Net Constraint: Net TIM4_CH2_D Between Pad D11-2(94.513mm,67.614mm) on Top Layer And Pad H2-3(94.767mm,39.827mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1362.378mil|Location2.X=3162.661mil|Location1.Y=602.378mil|Location2.Y=1958.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1362.378mil|Location2.X=3162.661mil|Location1.Y=602.378mil|Location2.Y=1958.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM4_CH3 Between Pad U2-B8(35.306mm,16.002mm) on Multi-Layer And Pad D12-1(79.63mm,48.768mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3237.339mil|Location2.X=3775mil|Location1.Y=1634mil|Location2.Y=1958.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3237.339mil|Location2.X=3775mil|Location1.Y=1634mil|Location2.Y=1958.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM4_CH3_D Between Pad D12-2(82.93mm,48.768mm) on Top Layer And Pad H2-4(94.767mm,42.367mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1362.378mil|Location2.X=1537.701mil|Location1.Y=491.551mil|Location2.Y=568.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1362.378mil|Location2.X=1537.701mil|Location1.Y=491.551mil|Location2.Y=568.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM4_CH4 Between Pad U2-B9(35.306mm,13.462mm) on Multi-Layer And Pad D13-1(38.356mm,13.462mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1612.378mil|Location2.X=3775mil|Location1.Y=491.551mil|Location2.Y=1802mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1612.378mil|Location2.X=3775mil|Location1.Y=491.551mil|Location2.Y=1802mil|Absolute=True">Un-Routed Net Constraint: Net TIM4_CH4_D Between Pad D13-2(41.656mm,13.462mm) on Top Layer And Pad H2-5(94.767mm,44.907mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2282.661mil|Location1.Y=561.551mil|Location2.Y=657.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2282.661mil|Location1.Y=561.551mil|Location2.Y=657.622mil|Absolute=True">Un-Routed Net Constraint: Net TIM2_CH1 Between Pad U2-A0(50.546mm,16.002mm) on Multi-Layer And Pad D2-1(57.278mm,15.24mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2357.339mil|Location2.X=3791mil|Location1.Y=462mil|Location2.Y=638.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2357.339mil|Location2.X=3791mil|Location1.Y=462mil|Location2.Y=638.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM2_CH1_D Between Pad D2-2(60.578mm,15.24mm) on Top Layer And Pad H1-3(95.174mm,12.598mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2262.661mil|Location1.Y=701.551mil|Location2.Y=778.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2262.661mil|Location1.Y=701.551mil|Location2.Y=778.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM2_CH2 Between Pad U2-A1(50.546mm,18.542mm) on Multi-Layer And Pad D3-1(56.77mm,18.796mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2337.339mil|Location2.X=3791mil|Location1.Y=562mil|Location2.Y=778.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2337.339mil|Location2.X=3791mil|Location1.Y=562mil|Location2.Y=778.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM2_CH2_D Between Pad D3-2(60.07mm,18.796mm) on Top Layer And Pad H1-4(95.174mm,15.138mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=3959.449mil|Location1.Y=802.378mil|Location2.Y=2559.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=3959.449mil|Location1.Y=802.378mil|Location2.Y=2559.661mil|Absolute=True">Un-Routed Net Constraint: Net TIM2_CH3 Between Pad U2-A2(50.546mm,21.082mm) on Multi-Layer And Pad D4-1(99.593mm,64.314mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3703mil|Location2.X=3959.449mil|Location1.Y=662mil|Location2.Y=2689.583mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3703mil|Location2.X=3959.449mil|Location1.Y=662mil|Location2.Y=2689.583mil|Absolute=True">Un-Routed Net Constraint: Net TIM2_CH3_D Between Pad H1-5(95.174mm,17.678mm) on Multi-Layer And Pad D4-2(99.593mm,67.614mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2242.661mil|Location1.Y=881.551mil|Location2.Y=958.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2242.661mil|Location1.Y=881.551mil|Location2.Y=958.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM2_CH4 Between Pad U2-A3(50.546mm,23.622mm) on Multi-Layer And Pad D5-1(56.262mm,23.368mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2317.339mil|Location2.X=3791mil|Location1.Y=762mil|Location2.Y=958.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2317.339mil|Location2.X=3791mil|Location1.Y=762mil|Location2.Y=958.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM2_CH4_D Between Pad D5-2(59.562mm,23.368mm) on Top Layer And Pad H1-6(95.174mm,20.218mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2252.661mil|Location1.Y=1191.551mil|Location2.Y=1268.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2252.661mil|Location1.Y=1191.551mil|Location2.Y=1268.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM3_CH1 Between Pad U2-A6(50.546mm,31.242mm) on Multi-Layer And Pad D6-1(56.516mm,31.242mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2327.339mil|Location2.X=3791mil|Location1.Y=862mil|Location2.Y=1268.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2327.339mil|Location2.X=3791mil|Location1.Y=862mil|Location2.Y=1268.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM3_CH1_D Between Pad D6-2(59.816mm,31.242mm) on Top Layer And Pad H1-7(95.174mm,22.758mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2247.622mil|Location1.Y=1291.551mil|Location2.Y=1368.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2247.622mil|Location1.Y=1291.551mil|Location2.Y=1368.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM3_CH2 Between Pad U2-A7(50.546mm,33.782mm) on Multi-Layer And Pad D7-1(56.388mm,33.782mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2322.299mil|Location2.X=3791mil|Location1.Y=962mil|Location2.Y=1368.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2322.299mil|Location2.X=3791mil|Location1.Y=962mil|Location2.Y=1368.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM3_CH2_D Between Pad D7-2(59.688mm,33.782mm) on Top Layer And Pad H1-8(95.174mm,25.298mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2242.661mil|Location1.Y=1401.551mil|Location2.Y=1478.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2242.661mil|Location1.Y=1401.551mil|Location2.Y=1478.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM3_CH3 Between Pad U2-B0(50.546mm,36.322mm) on Multi-Layer And Pad D8-1(56.262mm,36.576mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2317.339mil|Location2.X=3791mil|Location1.Y=1062mil|Location2.Y=1478.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2317.339mil|Location2.X=3791mil|Location1.Y=1062mil|Location2.Y=1478.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM3_CH3_D Between Pad D8-2(59.562mm,36.576mm) on Top Layer And Pad H1-9(95.174mm,27.838mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2242.661mil|Location1.Y=1501.551mil|Location2.Y=1578.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1962.378mil|Location2.X=2242.661mil|Location1.Y=1501.551mil|Location2.Y=1578.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM3_CH4 Between Pad U2-B1(50.546mm,38.862mm) on Multi-Layer And Pad D9-1(56.262mm,39.116mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2317.339mil|Location2.X=3775mil|Location1.Y=1334mil|Location2.Y=1578.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2317.339mil|Location2.X=3775mil|Location1.Y=1334mil|Location2.Y=1578.449mil|Absolute=True">Un-Routed Net Constraint: Net TIM3_CH4_D Between Pad D9-2(59.562mm,39.116mm) on Top Layer And Pad H2-1(94.767mm,34.747mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=338.173mil|Location2.X=3847mil|Location1.Y=1002.315mil|Location2.Y=396mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=338.173mil|Location2.X=3847mil|Location1.Y=1002.315mil|Location2.Y=396mil|Absolute=True">Un-Routed Net Constraint: Net 24V Between Track (11.13mm,27.999mm)(11.13mm,39.346mm) on Top Layer And Pad H1-1(95.174mm,7.518mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=474mil|Location2.X=807.858mil|Location1.Y=1451.016mil|Location2.Y=1612.496mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=474mil|Location2.X=807.858mil|Location1.Y=1451.016mil|Location2.Y=1612.496mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-3(14.58mm,39.396mm) on Top Layer And Track (17.98mm,38.417mm)(18.03mm,38.367mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=546mil|Location2.X=928mil|Location1.Y=1643mil|Location2.Y=1879mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=546mil|Location2.X=928mil|Location1.Y=1643mil|Location2.Y=1879mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (14.605mm,42.469mm) from Top Layer to Bottom Layer And Via (22.835mm,46.99mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=211mil|Location2.X=604mil|Location1.Y=1643mil|Location2.Y=1759mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=211mil|Location2.X=604mil|Location1.Y=1643mil|Location2.Y=1759mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (6.096mm,43.942mm) from Top Layer to Bottom Layer And Via (14.605mm,42.469mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=737mil|Location2.X=829mil|Location1.Y=1362mil|Location2.Y=1539mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=737mil|Location2.X=829mil|Location1.Y=1362mil|Location2.Y=1539mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (19.456mm,35.331mm) from Top Layer to Bottom Layer And Via (20.32mm,38.354mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDK2N0JVHJ2PTBCLAFXGK1IDXGTDF1YD3CZJFYTHC4T5HDN5QMVOLH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=266.143mil|Location2.X=277.393mil|Location1.Y=1724.375mil|Location2.Y=1735.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=266.143mil|Location2.X=277.393mil|Location1.Y=1724.375mil|Location2.Y=1735.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.141mm &lt; 0.254mm) Between Pad C4-2(7.925mm,43.82mm) on Top Layer And Via (6.096mm,43.942mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.141mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDO5DXKWXVZXTSBHL0GWH0WXLDWB2XSP21Z0JYHSBQWVZOM5OEEAHO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=366.43mil|Location2.X=377.68mil|Location1.Y=1067.352mil|Location2.Y=1078.602mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=366.43mil|Location2.X=377.68mil|Location1.Y=1067.352mil|Location2.Y=1078.602mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.198mm &lt; 0.254mm) Between Arc (10.513mm,23.467mm) on Top Overlay And Pad C1-1(11.049mm,27.918mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.198mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=366.397mil|Location2.X=377.647mil|Location1.Y=769.217mil|Location2.Y=780.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=366.397mil|Location2.X=377.647mil|Location1.Y=769.217mil|Location2.Y=780.467mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.199mm &lt; 0.254mm) Between Arc (10.513mm,23.467mm) on Top Overlay And Pad C1-2(11.049mm,18.618mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.199mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=491.553mil|Location2.X=502.803mil|Location1.Y=1065.817mil|Location2.Y=1077.067mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=491.553mil|Location2.X=502.803mil|Location1.Y=1065.817mil|Location2.Y=1077.067mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.159mm &lt; 0.254mm) Between Arc (11.618mm,23.404mm) on Top Overlay And Pad C1-1(11.049mm,27.918mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.159mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=493.246mil|Location2.X=504.496mil|Location1.Y=766.889mil|Location2.Y=778.139mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=493.246mil|Location2.X=504.496mil|Location1.Y=766.889mil|Location2.Y=778.139mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.245mm &lt; 0.254mm) Between Arc (11.618mm,23.404mm) on Top Overlay And Pad C1-2(11.049mm,18.618mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.245mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=619.675mil|Location2.X=630.925mil|Location1.Y=279.197mil|Location2.Y=290.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=619.675mil|Location2.X=630.925mil|Location1.Y=279.197mil|Location2.Y=290.447mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.159mm &lt; 0.254mm) Between Arc (12.072mm,8.244mm) on Top Overlay And Pad C2-1(16.586mm,8.814mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.159mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=320.747mil|Location2.X=331.997mil|Location1.Y=277.504mil|Location2.Y=288.754mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=320.747mil|Location2.X=331.997mil|Location1.Y=277.504mil|Location2.Y=288.754mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.245mm &lt; 0.254mm) Between Arc (12.072mm,8.244mm) on Top Overlay And Pad C2-2(7.286mm,8.814mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.245mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=621.21mil|Location2.X=632.46mil|Location1.Y=404.32mil|Location2.Y=415.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=621.21mil|Location2.X=632.46mil|Location1.Y=404.32mil|Location2.Y=415.57mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.198mm &lt; 0.254mm) Between Arc (12.135mm,9.349mm) on Top Overlay And Pad C2-1(16.586mm,8.814mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.198mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=323.075mil|Location2.X=334.325mil|Location1.Y=404.353mil|Location2.Y=415.603mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=323.075mil|Location2.X=334.325mil|Location1.Y=404.353mil|Location2.Y=415.603mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.199mm &lt; 0.254mm) Between Arc (12.135mm,9.349mm) on Top Overlay And Pad C2-2(7.286mm,8.814mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.199mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1062.604mil|Location2.X=1073.854mil|Location1.Y=1082.447mil|Location2.Y=1093.697mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1062.604mil|Location2.X=1073.854mil|Location1.Y=1082.447mil|Location2.Y=1093.697mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.006mm &lt; 0.254mm) Between Arc (21.717mm,23.038mm) on Top Overlay And Pad L1-1(24.13mm,28.651mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.006mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1067.721mil|Location2.X=1075.388mil|Location1.Y=721.221mil|Location2.Y=728.888mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1067.721mil|Location2.X=1075.388mil|Location1.Y=721.221mil|Location2.Y=728.888mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Arc (21.717mm,23.038mm) on Top Overlay And Pad L1-2(24.13mm,17.475mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=826.187mil|Location2.X=837.437mil|Location1.Y=1082.545mil|Location2.Y=1093.795mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=826.187mil|Location2.X=837.437mil|Location1.Y=1082.545mil|Location2.Y=1093.795mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.004mm &lt; 0.254mm) Between Arc (26.543mm,23.038mm) on Top Overlay And Pad L1-1(24.13mm,28.651mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.004mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=826.104mil|Location2.X=837.354mil|Location1.Y=720.403mil|Location2.Y=731.653mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=826.104mil|Location2.X=837.354mil|Location1.Y=720.403mil|Location2.Y=731.653mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.008mm &lt; 0.254mm) Between Arc (26.543mm,23.038mm) on Top Overlay And Pad L1-2(24.13mm,17.475mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.008mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1350.24mil|Location2.Y=1361.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1350.24mil|Location2.Y=1361.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.513mm,34.493mm) (95.021mm,35.001mm) on Top Overlay And Pad H2-1(94.767mm,34.747mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1450.24mil|Location2.Y=1461.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1450.24mil|Location2.Y=1461.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.513mm,37.033mm) (95.021mm,37.541mm) on Top Overlay And Pad H2-2(94.767mm,37.287mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1550.24mil|Location2.Y=1561.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1550.24mil|Location2.Y=1561.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.513mm,39.573mm) (95.021mm,40.081mm) on Top Overlay And Pad H2-3(94.767mm,39.827mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1650.24mil|Location2.Y=1661.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1650.24mil|Location2.Y=1661.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.513mm,42.113mm) (95.021mm,42.621mm) on Top Overlay And Pad H2-4(94.767mm,42.367mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1750.24mil|Location2.Y=1761.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1750.24mil|Location2.Y=1761.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.513mm,44.653mm) (95.021mm,45.161mm) on Top Overlay And Pad H2-5(94.767mm,44.907mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1850.24mil|Location2.Y=1861.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1850.24mil|Location2.Y=1861.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.513mm,47.193mm) (95.021mm,47.701mm) on Top Overlay And Pad H2-6(94.767mm,47.447mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1950.24mil|Location2.Y=1961.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=1950.24mil|Location2.Y=1961.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.513mm,49.733mm) (95.021mm,50.241mm) on Top Overlay And Pad H2-7(94.767mm,49.987mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=2050.24mil|Location2.Y=2061.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=2050.24mil|Location2.Y=2061.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.513mm,52.273mm) (95.021mm,52.781mm) on Top Overlay And Pad H2-8(94.767mm,52.527mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=2150.24mil|Location2.Y=2161.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3737.385mil|Location2.X=3748.635mil|Location1.Y=2150.24mil|Location2.Y=2161.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.513mm,54.813mm) (95.021mm,55.321mm) on Top Overlay And Pad H2-9(94.767mm,55.067mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=478.24mil|Location2.Y=489.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=478.24mil|Location2.Y=489.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.92mm,12.344mm) (95.428mm,12.852mm) on Top Overlay And Pad H1-3(95.174mm,12.598mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=578.24mil|Location2.Y=589.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=578.24mil|Location2.Y=589.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.92mm,14.884mm) (95.428mm,15.392mm) on Top Overlay And Pad H1-4(95.174mm,15.138mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=678.24mil|Location2.Y=689.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=678.24mil|Location2.Y=689.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.92mm,17.424mm) (95.428mm,17.932mm) on Top Overlay And Pad H1-5(95.174mm,17.678mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=778.24mil|Location2.Y=789.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=778.24mil|Location2.Y=789.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.92mm,19.964mm) (95.428mm,20.472mm) on Top Overlay And Pad H1-6(95.174mm,20.218mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=878.24mil|Location2.Y=889.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=878.24mil|Location2.Y=889.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.92mm,22.504mm) (95.428mm,23.012mm) on Top Overlay And Pad H1-7(95.174mm,22.758mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=978.24mil|Location2.Y=989.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=978.24mil|Location2.Y=989.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.92mm,25.044mm) (95.428mm,25.552mm) on Top Overlay And Pad H1-8(95.174mm,25.298mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=1078.24mil|Location2.Y=1089.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=1078.24mil|Location2.Y=1089.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.92mm,27.584mm) (95.428mm,28.092mm) on Top Overlay And Pad H1-9(95.174mm,27.838mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=278.24mil|Location2.Y=289.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=278.24mil|Location2.Y=289.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.92mm,7.264mm) (95.428mm,7.772mm) on Top Overlay And Pad H1-1(95.174mm,7.518mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=378.24mil|Location2.Y=389.49mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.385mil|Location2.X=3764.635mil|Location1.Y=378.24mil|Location2.Y=389.49mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Area Fill (94.92mm,9.804mm) (95.428mm,10.312mm) on Top Overlay And Pad H1-2(95.174mm,10.058mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=643.3mil|Location2.X=654.55mil|Location1.Y=575.847mil|Location2.Y=587.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=643.3mil|Location2.X=654.55mil|Location1.Y=575.847mil|Location2.Y=587.097mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad C3-1(17.094mm,15.519mm) on Top Layer And Track (15.296mm,14.769mm)(16.296mm,14.769mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=643.3mil|Location2.X=654.55mil|Location1.Y=634.903mil|Location2.Y=646.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=643.3mil|Location2.X=654.55mil|Location1.Y=634.903mil|Location2.Y=646.153mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad C3-1(17.094mm,15.519mm) on Top Layer And Track (15.296mm,16.269mm)(16.296mm,16.269mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=589.245mil|Location2.X=600.495mil|Location1.Y=575.847mil|Location2.Y=587.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=589.245mil|Location2.X=600.495mil|Location1.Y=575.847mil|Location2.Y=587.097mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad C3-2(14.498mm,15.519mm) on Top Layer And Track (15.296mm,14.769mm)(16.296mm,14.769mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=589.245mil|Location2.X=600.495mil|Location1.Y=634.903mil|Location2.Y=646.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=589.245mil|Location2.X=600.495mil|Location1.Y=634.903mil|Location2.Y=646.153mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad C3-2(14.498mm,15.519mm) on Top Layer And Track (15.296mm,16.269mm)(16.296mm,16.269mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=276.847mil|Location2.X=288.097mil|Location1.Y=1641.45mil|Location2.Y=1652.7mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=276.847mil|Location2.X=288.097mil|Location1.Y=1641.45mil|Location2.Y=1652.7mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad C4-1(7.925mm,41.224mm) on Top Layer And Track (7.175mm,42.022mm)(7.175mm,43.022mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=335.902mil|Location2.X=347.152mil|Location1.Y=1641.45mil|Location2.Y=1652.7mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=335.902mil|Location2.X=347.152mil|Location1.Y=1641.45mil|Location2.Y=1652.7mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad C4-1(7.925mm,41.224mm) on Top Layer And Track (8.675mm,42.022mm)(8.675mm,43.022mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=276.847mil|Location2.X=288.097mil|Location1.Y=1695.505mil|Location2.Y=1706.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=276.847mil|Location2.X=288.097mil|Location1.Y=1695.505mil|Location2.Y=1706.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad C4-2(7.925mm,43.82mm) on Top Layer And Track (7.175mm,42.022mm)(7.175mm,43.022mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=335.902mil|Location2.X=347.152mil|Location1.Y=1695.505mil|Location2.Y=1706.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=335.902mil|Location2.X=347.152mil|Location1.Y=1695.505mil|Location2.Y=1706.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad C4-2(7.925mm,43.82mm) on Top Layer And Track (8.675mm,42.022mm)(8.675mm,43.022mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=275.375mil|Location2.Y=286.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=275.375mil|Location2.Y=286.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-1(95.174mm,7.518mm) on Multi-Layer And Track (93.904mm,6.883mm)(93.904mm,8.153mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=275.375mil|Location2.Y=286.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=275.375mil|Location2.Y=286.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-1(95.174mm,7.518mm) on Multi-Layer And Track (96.444mm,6.883mm)(96.444mm,8.153mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=375.375mil|Location2.Y=386.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=375.375mil|Location2.Y=386.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-2(95.174mm,10.058mm) on Multi-Layer And Track (93.904mm,9.423mm)(93.904mm,10.693mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=375.375mil|Location2.Y=386.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=375.375mil|Location2.Y=386.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-2(95.174mm,10.058mm) on Multi-Layer And Track (96.444mm,9.423mm)(96.444mm,10.693mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=475.375mil|Location2.Y=486.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=475.375mil|Location2.Y=486.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-3(95.174mm,12.598mm) on Multi-Layer And Track (93.904mm,11.963mm)(93.904mm,13.233mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=475.375mil|Location2.Y=486.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=475.375mil|Location2.Y=486.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-3(95.174mm,12.598mm) on Multi-Layer And Track (96.444mm,11.963mm)(96.444mm,13.233mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=575.375mil|Location2.Y=586.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=575.375mil|Location2.Y=586.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-4(95.174mm,15.138mm) on Multi-Layer And Track (93.904mm,14.503mm)(93.904mm,15.773mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=575.375mil|Location2.Y=586.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=575.375mil|Location2.Y=586.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-4(95.174mm,15.138mm) on Multi-Layer And Track (96.444mm,14.503mm)(96.444mm,15.773mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=675.375mil|Location2.Y=686.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=675.375mil|Location2.Y=686.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-5(95.174mm,17.678mm) on Multi-Layer And Track (93.904mm,17.043mm)(93.904mm,18.313mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=675.375mil|Location2.Y=686.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=675.375mil|Location2.Y=686.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-5(95.174mm,17.678mm) on Multi-Layer And Track (96.444mm,17.043mm)(96.444mm,18.313mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=775.375mil|Location2.Y=786.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=775.375mil|Location2.Y=786.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-6(95.174mm,20.218mm) on Multi-Layer And Track (93.904mm,19.583mm)(93.904mm,20.853mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=775.375mil|Location2.Y=786.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=775.375mil|Location2.Y=786.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-6(95.174mm,20.218mm) on Multi-Layer And Track (96.444mm,19.583mm)(96.444mm,20.853mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=875.375mil|Location2.Y=886.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=875.375mil|Location2.Y=886.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-7(95.174mm,22.758mm) on Multi-Layer And Track (93.904mm,22.123mm)(93.904mm,23.393mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=875.375mil|Location2.Y=886.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=875.375mil|Location2.Y=886.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-7(95.174mm,22.758mm) on Multi-Layer And Track (96.444mm,22.123mm)(96.444mm,23.393mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=975.375mil|Location2.Y=986.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=975.375mil|Location2.Y=986.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-8(95.174mm,25.298mm) on Multi-Layer And Track (93.904mm,24.663mm)(93.904mm,25.933mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=975.375mil|Location2.Y=986.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=975.375mil|Location2.Y=986.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-8(95.174mm,25.298mm) on Multi-Layer And Track (96.444mm,24.663mm)(96.444mm,25.933mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=1075.375mil|Location2.Y=1086.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3697.875mil|Location2.X=3709.125mil|Location1.Y=1075.375mil|Location2.Y=1086.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-9(95.174mm,27.838mm) on Multi-Layer And Track (93.904mm,27.203mm)(93.904mm,28.473mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=1075.375mil|Location2.Y=1086.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.875mil|Location2.X=3796.125mil|Location1.Y=1075.375mil|Location2.Y=1086.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H1-9(95.174mm,27.838mm) on Multi-Layer And Track (96.444mm,27.203mm)(96.444mm,28.473mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1347.375mil|Location2.Y=1358.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1347.375mil|Location2.Y=1358.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-1(94.767mm,34.747mm) on Multi-Layer And Track (93.497mm,34.112mm)(93.497mm,35.382mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1347.375mil|Location2.Y=1358.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1347.375mil|Location2.Y=1358.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-1(94.767mm,34.747mm) on Multi-Layer And Track (96.037mm,34.112mm)(96.037mm,35.382mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1447.375mil|Location2.Y=1458.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1447.375mil|Location2.Y=1458.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-2(94.767mm,37.287mm) on Multi-Layer And Track (93.497mm,36.652mm)(93.497mm,37.922mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1447.375mil|Location2.Y=1458.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1447.375mil|Location2.Y=1458.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-2(94.767mm,37.287mm) on Multi-Layer And Track (96.037mm,36.652mm)(96.037mm,37.922mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1547.375mil|Location2.Y=1558.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1547.375mil|Location2.Y=1558.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-3(94.767mm,39.827mm) on Multi-Layer And Track (93.497mm,39.192mm)(93.497mm,40.462mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1547.375mil|Location2.Y=1558.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1547.375mil|Location2.Y=1558.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-3(94.767mm,39.827mm) on Multi-Layer And Track (96.037mm,39.192mm)(96.037mm,40.462mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1647.375mil|Location2.Y=1658.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1647.375mil|Location2.Y=1658.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-4(94.767mm,42.367mm) on Multi-Layer And Track (93.497mm,41.732mm)(93.497mm,43.002mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1647.375mil|Location2.Y=1658.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1647.375mil|Location2.Y=1658.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-4(94.767mm,42.367mm) on Multi-Layer And Track (96.037mm,41.732mm)(96.037mm,43.002mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1747.375mil|Location2.Y=1758.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1747.375mil|Location2.Y=1758.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-5(94.767mm,44.907mm) on Multi-Layer And Track (93.497mm,44.272mm)(93.497mm,45.542mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1747.375mil|Location2.Y=1758.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1747.375mil|Location2.Y=1758.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-5(94.767mm,44.907mm) on Multi-Layer And Track (96.037mm,44.272mm)(96.037mm,45.542mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1847.375mil|Location2.Y=1858.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1847.375mil|Location2.Y=1858.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-6(94.767mm,47.447mm) on Multi-Layer And Track (93.497mm,46.812mm)(93.497mm,48.082mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1847.375mil|Location2.Y=1858.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1847.375mil|Location2.Y=1858.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-6(94.767mm,47.447mm) on Multi-Layer And Track (96.037mm,46.812mm)(96.037mm,48.082mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1947.375mil|Location2.Y=1958.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=1947.375mil|Location2.Y=1958.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-7(94.767mm,49.987mm) on Multi-Layer And Track (93.497mm,49.352mm)(93.497mm,50.622mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1947.375mil|Location2.Y=1958.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=1947.375mil|Location2.Y=1958.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-7(94.767mm,49.987mm) on Multi-Layer And Track (96.037mm,49.352mm)(96.037mm,50.622mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=2047.375mil|Location2.Y=2058.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=2047.375mil|Location2.Y=2058.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-8(94.767mm,52.527mm) on Multi-Layer And Track (93.497mm,51.892mm)(93.497mm,53.162mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=2047.375mil|Location2.Y=2058.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=2047.375mil|Location2.Y=2058.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-8(94.767mm,52.527mm) on Multi-Layer And Track (96.037mm,51.892mm)(96.037mm,53.162mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=2147.375mil|Location2.Y=2158.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.875mil|Location2.X=3693.125mil|Location1.Y=2147.375mil|Location2.Y=2158.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-9(94.767mm,55.067mm) on Multi-Layer And Track (93.497mm,54.432mm)(93.497mm,55.702mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=2147.375mil|Location2.Y=2158.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.875mil|Location2.X=3780.125mil|Location1.Y=2147.375mil|Location2.Y=2158.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad H2-9(94.767mm,55.067mm) on Multi-Layer And Track (96.037mm,54.432mm)(96.037mm,55.702mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=824.538mil|Location2.X=835.788mil|Location1.Y=1141.375mil|Location2.Y=1152.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=824.538mil|Location2.X=835.788mil|Location1.Y=1141.375mil|Location2.Y=1152.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.088mm &lt; 0.254mm) Between Pad L1-1(24.13mm,28.651mm) on Top Layer And Track (18.161mm,29.134mm)(20.942mm,29.134mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.088mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1064.712mil|Location2.X=1075.962mil|Location1.Y=1141.375mil|Location2.Y=1152.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1064.712mil|Location2.X=1075.962mil|Location1.Y=1141.375mil|Location2.Y=1152.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.113mm &lt; 0.254mm) Between Pad L1-1(24.13mm,28.651mm) on Top Layer And Track (27.343mm,29.134mm)(30.226mm,29.134mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.113mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=824.038mil|Location2.X=835.288mil|Location1.Y=666.375mil|Location2.Y=677.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=824.038mil|Location2.X=835.288mil|Location1.Y=666.375mil|Location2.Y=677.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.113mm &lt; 0.254mm) Between Pad L1-2(24.13mm,17.475mm) on Top Layer And Track (18.161mm,17.069mm)(20.917mm,17.069mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.113mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1064.712mil|Location2.X=1075.962mil|Location1.Y=666.375mil|Location2.Y=677.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1064.712mil|Location2.X=1075.962mil|Location1.Y=666.375mil|Location2.Y=677.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.113mm &lt; 0.254mm) Between Pad L1-2(24.13mm,17.475mm) on Top Layer And Track (27.343mm,17.069mm)(30.226mm,17.069mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.113mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=849.926mil|Location2.X=861.176mil|Location1.Y=1585.572mil|Location2.Y=1596.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=849.926mil|Location2.X=861.176mil|Location1.Y=1585.572mil|Location2.Y=1596.822mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad R1-1(22.606mm,39.891mm) on Top Layer And Track (21.656mm,39.384mm)(21.656mm,40.567mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=850.91mil|Location2.X=862.16mil|Location1.Y=1587.56mil|Location2.Y=1598.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=850.91mil|Location2.X=862.16mil|Location1.Y=1587.56mil|Location2.Y=1598.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.101mm &lt; 0.254mm) Between Pad R1-1(22.606mm,39.891mm) on Top Layer And Track (21.656mm,40.567mm)(23.556mm,40.567mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.101mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=919.316mil|Location2.X=930.566mil|Location1.Y=1585.572mil|Location2.Y=1596.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=919.316mil|Location2.X=930.566mil|Location1.Y=1585.572mil|Location2.Y=1596.822mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.254mm) Between Pad R1-1(22.606mm,39.891mm) on Top Layer And Track (23.581mm,39.409mm)(23.581mm,40.567mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=849.927mil|Location2.X=861.177mil|Location1.Y=1425.178mil|Location2.Y=1436.428mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=849.927mil|Location2.X=861.177mil|Location1.Y=1425.178mil|Location2.Y=1436.428mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad R1-2(22.606mm,36.867mm) on Top Layer And Track (21.656mm,36.204mm)(21.656mm,37.403mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=917.84mil|Location2.X=929.09mil|Location1.Y=1423.446mil|Location2.Y=1434.696mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=917.84mil|Location2.X=929.09mil|Location1.Y=1423.446mil|Location2.Y=1434.696mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.088mm &lt; 0.254mm) Between Pad R1-2(22.606mm,36.867mm) on Top Layer And Track (21.656mm,36.204mm)(23.581mm,36.204mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.088mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=919.316mil|Location2.X=930.566mil|Location1.Y=1425.178mil|Location2.Y=1436.428mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=919.316mil|Location2.X=930.566mil|Location1.Y=1425.178mil|Location2.Y=1436.428mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.254mm) Between Pad R1-2(22.606mm,36.867mm) on Top Layer And Track (23.581mm,36.204mm)(23.581mm,37.377mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=855.926mil|Location2.X=867.176mil|Location1.Y=1785.1mil|Location2.Y=1796.35mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=855.926mil|Location2.X=867.176mil|Location1.Y=1785.1mil|Location2.Y=1796.35mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad R2-1(22.758mm,44.959mm) on Top Layer And Track (21.808mm,44.452mm)(21.808mm,45.635mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=856.91mil|Location2.X=868.16mil|Location1.Y=1787.088mil|Location2.Y=1798.338mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=856.91mil|Location2.X=868.16mil|Location1.Y=1787.088mil|Location2.Y=1798.338mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.101mm &lt; 0.254mm) Between Pad R2-1(22.758mm,44.959mm) on Top Layer And Track (21.808mm,45.635mm)(23.708mm,45.635mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.101mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=925.316mil|Location2.X=936.566mil|Location1.Y=1785.1mil|Location2.Y=1796.35mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=925.316mil|Location2.X=936.566mil|Location1.Y=1785.1mil|Location2.Y=1796.35mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.254mm) Between Pad R2-1(22.758mm,44.959mm) on Top Layer And Track (23.733mm,44.477mm)(23.733mm,45.635mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=855.926mil|Location2.X=867.176mil|Location1.Y=1624.706mil|Location2.Y=1635.956mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=855.926mil|Location2.X=867.176mil|Location1.Y=1624.706mil|Location2.Y=1635.956mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad R2-2(22.758mm,41.935mm) on Top Layer And Track (21.808mm,41.272mm)(21.808mm,42.471mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=923.84mil|Location2.X=935.09mil|Location1.Y=1622.974mil|Location2.Y=1634.224mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=923.84mil|Location2.X=935.09mil|Location1.Y=1622.974mil|Location2.Y=1634.224mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.088mm &lt; 0.254mm) Between Pad R2-2(22.758mm,41.935mm) on Top Layer And Track (21.808mm,41.272mm)(23.733mm,41.272mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.088mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=925.316mil|Location2.X=936.566mil|Location1.Y=1624.706mil|Location2.Y=1635.956mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=925.316mil|Location2.X=936.566mil|Location1.Y=1624.706mil|Location2.Y=1635.956mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.254mm) Between Pad R2-2(22.758mm,41.935mm) on Top Layer And Track (23.733mm,41.272mm)(23.733mm,42.445mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=524.167mil|Location2.X=531.833mil|Location1.Y=1522.147mil|Location2.Y=1529.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=524.167mil|Location2.X=531.833mil|Location1.Y=1522.147mil|Location2.Y=1529.814mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad U1-2(12.88mm,39.396mm) on Top Layer And Text "D1" (13.411mm,37.236mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=564.154mil|Location2.X=571.82mil|Location1.Y=1478.285mil|Location2.Y=1485.951mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=564.154mil|Location2.X=571.82mil|Location1.Y=1478.285mil|Location2.Y=1485.951mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad U1-3(14.58mm,39.396mm) on Top Layer And Text "D1" (13.411mm,37.236mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=371.138mil|Location2.X=378.804mil|Location1.Y=1776.167mil|Location2.Y=1783.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=371.138mil|Location2.X=378.804mil|Location1.Y=1776.167mil|Location2.Y=1783.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad U1-6(14.58mm,48.946mm) on Top Layer And Text "C4" (7.239mm,45.212mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.556mil|Location2.X=1368.806mil|Location1.Y=2147.385mil|Location2.Y=2158.635mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.556mil|Location2.X=1368.806mil|Location1.Y=2147.385mil|Location2.Y=2158.635mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.162mm &lt; 0.254mm) Between Pad U2-B12(35.306mm,54.102mm) on Multi-Layer And Text "U2" (31.877mm,54.686mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.162mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDE3QDNTWWCKCYIQVYQ4JTOHFW2LBHMNNU4ENJICLVTQVXFKENGJYD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=587.296mil|Location2.X=594.962mil|Location1.Y=729.008mil|Location2.Y=736.675mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=587.296mil|Location2.X=594.962mil|Location1.Y=729.008mil|Location2.Y=736.675mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C3" (14.122mm,17.221mm) on Top Overlay And Track (12.954mm,18.614mm)(16.083mm,18.614mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=622.144mil|Location2.X=629.811mil|Location1.Y=734.147mil|Location2.Y=741.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=622.144mil|Location2.X=629.811mil|Location1.Y=734.147mil|Location2.Y=741.814mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C3" (14.122mm,17.221mm) on Top Overlay And Track (16.083mm,18.614mm)(16.083mm,26.503mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID5KGJPPYKPHVRFG5LYAWOOE51BNPWEPBWVAR2EVCDN5TODZUTH4QH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=207.5mil|Location2.X=283.336mil|Location1.Y=1697.5mil|Location2.Y=1819.456mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=207.5mil|Location2.X=283.336mil|Location1.Y=1697.5mil|Location2.Y=1819.456mil|Absolute=True">Net Antennae: Via (6.096mm,43.942mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
