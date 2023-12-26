@@ -1,0 +1,175 @@
+Board Information Report
+Filename     : C:\Users\Dorsa-co\Documents\GitHub\parsytec_ptojector_pcb\altium designer\Parsytec LED controller\PCB1.PcbDoc
+Date         : 12/26/2023
+Time         : 9:32:46 AM
+Time Elapsed : 00:00:01
+
+General
+    Board Size, 100.0723mmx59.6309mm
+    Components on board, 24
+count : 2
+
+Routing Information
+    Routing completion, 100.00%
+    Connections, 50
+    Connections routed, 50
+    Connections remaining, 0
+count : 4
+
+Layer, Arcs, Pads, Vias, Tracks, Texts, Fills, Regions, ComponentBodies
+    Top Layer, 0, 48, 0, 166, 0, 0, 79, 0
+    Bottom Layer, 0, 0, 0, 3, 0, 0, 3, 0
+    Mechanical 1, 0, 0, 0, 0, 0, 0, 0, 22
+    Mechanical 13, 0, 0, 0, 64, 0, 13, 0, 2
+    Mechanical 15, 0, 0, 0, 88, 0, 0, 0, 0
+    Multi-Layer, 0, 58, 3, 0, 0, 0, 1, 0
+    Top Paste, 0, 0, 0, 0, 0, 0, 0, 0
+    Top Overlay, 8, 0, 0, 219, 50, 31, 4, 0
+    Top Solder, 0, 0, 0, 0, 0, 0, 0, 0
+    Bottom Solder, 0, 0, 0, 0, 0, 0, 0, 0
+    Bottom Overlay, 0, 0, 0, 0, 0, 0, 0, 0
+    Bottom Paste, 0, 0, 0, 0, 0, 0, 0, 0
+    Drill Guide, 0, 0, 0, 0, 0, 0, 0, 0
+    Keep-Out Layer, 2, 0, 0, 14, 0, 0, 0, 0
+    Drill Drawing, 0, 0, 0, 0, 0, 0, 0, 0
+count : 15
+
+Drill Pairs, Vias
+    Top Layer - Bottom Layer, 3
+count : 1
+
+Layer, Sq.In., Sq.MM., Percent of layer
+    Top Layer, 8.055, 5196.785, 89%
+    Bottom Layer, 8.709, 5618.595, 96%
+count : 2
+
+Non-Plated Hole Size, Pads, Vias
+count : 0
+
+Plated Hole Size, Pads, Vias
+    0mm, 48, 0
+    0.6mm, 40, 0
+    0.7112mm, 0, 1
+    1.016mm, 18, 0
+    3.1mm, 0, 2
+count : 5
+
+Non-Plated Slot Size / Length, Pads
+count : 0
+
+Plated Slot Size / Length, Pads
+count : 0
+
+Non-Plated Square Hole Size, Pads
+count : 0
+
+Plated Square Hole Size, Pads
+count : 0
+
+Top Layer Annular Ring Size, Count
+    0.5588mm, 1
+    0.6mm, 40
+    1.016mm, 18
+    2.9mm, 2
+count : 4
+
+Mid Layer Annular Ring Size, Count
+    0.5588mm, 1
+    0.6mm, 40
+    1.016mm, 18
+    2.9mm, 2
+count : 4
+
+Bottom Layer Annular Ring Size, Count
+    0.5588mm, 1
+    0.6mm, 40
+    1.016mm, 18
+    2.9mm, 2
+count : 4
+
+Pad Solder Mask, Count
+    0.1016mm, 106
+count : 1
+
+Pad Paste Mask, Count
+    0mm, 106
+count : 1
+
+Pad Pwr/Gnd Expansion, Count
+    0.508mm, 106
+count : 1
+
+Pad Relief Conductor Width, Count
+    0.254mm, 106
+count : 1
+
+Pad Relief Air Gap, Count
+    0.254mm, 106
+count : 1
+
+Pad Relief Entries, Count
+    4, 106
+count : 1
+
+Via Solder Mask, Count
+    0.1016mm, 3
+count : 1
+
+Via Pwr/Gnd Expansion, Count
+    0.508mm, 3
+count : 1
+
+Track Width, Count
+    0.01mm, 14
+    0.05mm, 4
+    0.1mm, 160
+    0.1524mm, 134
+    0.2mm, 57
+    0.254mm, 16
+    0.3mm, 2
+    0.7mm, 119
+    1mm, 9
+    1.2mm, 39
+count : 10
+
+Arc Line Width, Count
+    0.01mm, 2
+    0.2mm, 3
+    0.25mm, 1
+    0.254mm, 4
+count : 4
+
+Arc Radius, Count
+    0.125mm, 1
+    0.635mm, 1
+    3.0925mm, 1
+    3.4975mm, 1
+    4mm, 4
+    7.1842mm, 2
+count : 6
+
+Arc Degrees, Count
+    80, 2
+    90, 1
+    142, 2
+    143, 2
+    158, 1
+    180, 1
+    360, 1
+count : 7
+
+Text Height, Count
+    1.524mm, 50
+count : 1
+
+Text Width, Count
+    0.254mm, 50
+count : 1
+
+Net Track Width, Count
+    0.3mm, 29
+count : 1
+
+Net Via Size, Count
+    1.27mm, 29
+count : 1
