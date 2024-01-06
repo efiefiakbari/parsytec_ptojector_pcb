@@ -27,19 +27,20 @@ int main(void)
 	int delay_value=1000/10;   // 1000/freq of pwm for led  PC13
 	
 ///////////////configuration of TIM1/////////////////
+	///////0.6 A without any LED//////////
 	
-	int compare_value1=period_value*0.33; // defining the duty cycle of pwm //
-	int compare_value2=period_value*0.33; // defining the duty cycle of pwm //
-	int compare_value3=period_value*0.3; // defining the duty cycle of pwm //
-	int compare_value4=period_value*0.3; // defining the duty cycle of pwm //
-	int compare_value5=period_value*0.33; // defining the duty cycle of pwm //
-	int compare_value6=period_value*0.33; // defining the duty cycle of pwm //
-	int compare_value7=period_value*0.3; // defining the duty cycle of pwm //
-	int compare_value8=period_value*0.3; // defining the duty cycle of pwm //
-	int compare_value9=period_value*0.33; // defining the duty cycle of pwm //
-	int compare_value10=period_value*0.33; // defining the duty cycle of pwm //
-	int compare_value11=period_value*0.3; // defining the duty cycle of pwm //
-	int compare_value12=period_value*0.3; // defining the duty cycle of pwm //
+	int compare_value1=period_value*0.4; // defining the duty cycle of pwm //   //////////  1  ///////  D C =0.4   1A
+	int compare_value2=period_value*0.15; // defining the duty cycle of pwm //   //////////  2  ///////  D C =0.15   1A       
+	int compare_value3=period_value*0.25; // defining the duty cycle of pwm //   //////////  3  ///////  D C =0.4   1A
+	int compare_value4=period_value*0.35; // defining the duty cycle of pwm //   //////////  4  ///////  D C =0.35   1A
+	int compare_value5=period_value*0.1; // defining the duty cycle of pwm //
+	int compare_value6=period_value*0.2; // defining the duty cycle of pwm //
+	int compare_value7=period_value*0.2; // defining the duty cycle of pwm //
+	int compare_value8=period_value*0.2; // defining the duty cycle of pwm //
+	int compare_value9=period_value*0.2; // defining the duty cycle of pwm //
+	int compare_value10=period_value*0.2; // defining the duty cycle of pwm //
+	int compare_value11=period_value*0.2; // defining the duty cycle of pwm //
+	int compare_value12=period_value*0.2; // defining the duty cycle of pwm //
 	
 	// setting the values //
 	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,compare_value1); 
