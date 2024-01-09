@@ -29,18 +29,18 @@ int main(void)
 ///////////////configuration of TIM1/////////////////
 	///////0.6 A without any LED//////////
 	
-	int compare_value1=period_value*0.4; // defining the duty cycle of pwm //   //////////  1  ///////  D C =0.4   1A
-	int compare_value2=period_value*0.15; // defining the duty cycle of pwm //   //////////  2  ///////  D C =0.15   1A       
-	int compare_value3=period_value*0.25; // defining the duty cycle of pwm //   //////////  3  ///////  D C =0.4   1A
-	int compare_value4=period_value*0.35; // defining the duty cycle of pwm //   //////////  4  ///////  D C =0.35   1A
-	int compare_value5=period_value*0.1; // defining the duty cycle of pwm //
-	int compare_value6=period_value*0.2; // defining the duty cycle of pwm //
-	int compare_value7=period_value*0.2; // defining the duty cycle of pwm //
-	int compare_value8=period_value*0.2; // defining the duty cycle of pwm //
-	int compare_value9=period_value*0.2; // defining the duty cycle of pwm //
-	int compare_value10=period_value*0.2; // defining the duty cycle of pwm //
-	int compare_value11=period_value*0.2; // defining the duty cycle of pwm //
-	int compare_value12=period_value*0.2; // defining the duty cycle of pwm //
+	int compare_value1=period_value*0.38; // defining the duty cycle of pwm/////////////  1  ///////  D C =0.4    1A /// DC =0.35 0.9A   0.3+0.9=1.2
+	int compare_value2=period_value*0.1; // defining the duty cycle of pwm//////////////  2  ///////  D C =0.15   1A /// DC =0.1 0.9A    1.2+0.9=2.1    	
+	int compare_value3=period_value*0.22; // defining the duty cycle of pwm //   //////////  3  ///////  D C =0.25   1A /// DC =0.8 0.9A    2.1+0.9=3
+	int compare_value4=period_value*0; // defining the duty cycle of pwm //   //////////  4  ///////  D C =0.15   1A /// DC =0.8 0.9A
+	int compare_value5=period_value*0; // defining the duty cycle of pwm //   //////////  5  ///////  D C =0.1    1A /// DC =0.8 0.9A
+	int compare_value6=period_value*0; // defining the duty cycle of pwm //   //////////  6  ///////  D C =0.1    1A /// DC =0.8 0.9A
+	int compare_value7=period_value*0; // defining the duty cycle of pwm //
+	int compare_value8=period_value*0; // defining the duty cycle of pwm //
+	int compare_value9=period_value*0; // defining the duty cycle of pwm //
+	int compare_value10=period_value*0; // defining the duty cycle of pwm //
+	int compare_value11=period_value*0; // defining the duty cycle of pwm //
+	int compare_value12=period_value*0; // defining the duty cycle of pwm //
 	
 	// setting the values //
 	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,compare_value1); 
